@@ -1,0 +1,17 @@
+.component > a, li > a {
+  border-bottom: 1px dashed #4D4E50;
+}
+
+.int {
+  color: #FFFFFF;
+  background-color: #131416;
+  border: 1px solid #1D2023;
+  text-align: center;
+  font-size: 14px;
+}
+
+.jscolor {
+  border: 1px solid #1D2023;
+  text-align: center;
+  font-size: 14px;
+}

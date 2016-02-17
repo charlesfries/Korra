@@ -106,6 +106,26 @@ else if ($_GET["s"] == "randomOn")
   $message = "Random lighting turned on.";
 else if ($_GET["s"] == "randomOff")
   $message = "Random lighting turned off.";
+  
+// Door ////////////////////////////////////////////////////////////////////////////////
+else if ($_GET["s"] == "doorLock") {
+  
+  $message = "Door has been locked.";
+  
+  
+  $buf_size = 1024;
+  $socket = stream_socket_server("udp://10.46.1.240:8888", $errno, $errstr, STREAM_SERVER_BIND);
+  $str = stream_socket_recvfrom($socket, $buf_size, 0, $peer); 
+  $str = "abc";
+  stream_socket_sendto($socket, $str, strlen($str), 0, $peer);
+   
+ 
+ 
+ 
+}
+  
+else if ($_GET["s"] == "doorUnlock")
+  $message = "Door has been unlocked.";
 
 // Service Cutoff ////////////////////////////////////////////////////////////////////////////////
 if ($_GET["e"] == "true")

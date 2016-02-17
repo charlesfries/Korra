@@ -1,4 +1,5 @@
 <?php
+
 $colors = [
   "red"    => "#ff0000",
   "orange" => "#ff8000",

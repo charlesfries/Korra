@@ -26,6 +26,17 @@ if ($_GET["q"]) {
 			}
 		}
 		
+		else if (strtolower($words[1]) == "white") {
+			if (is_numeric($words[2]) && ($words[2] >= 0 || $words[2] <= 100)) {
+				$intensity = $words[2];
+			} else {
+				$intensity = 100;
+			}
+			$deskLamp->setWhite($intensity);
+			$tallLamp->setWhite($intensity);
+			$response = "All lights made white.";
+		}
+		
 		// Intensity
 		else if (is_numeric($words[1]) && ($words[1] >= 0 || $words[1] <= 100)) {
 			

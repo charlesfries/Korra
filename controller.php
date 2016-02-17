@@ -7,7 +7,6 @@ $colors = [
   "green"  => "#40ff00",
   "blue"   => "#0080ff",
   "purple" => "#bf00ff",
-  "white"  => "#ffffff",
   "pink"   => "#ff00bf"
 ];
 
@@ -47,8 +46,20 @@ class Light {
     return "Desk Lamp turned off.";
   }
   
-  function setColor($color) { 
-    $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py ".$this->ip." -c ".hex2rgb($color));
+  function setColor($color) {
+    if ($color == "white") {
+      $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py ".$this->ip." -w 100 -1");
+      $output = shell_exec($command);
+      return "Desk Lamp color changed to #".$color.".";
+    } else {
+      $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py ".$this->ip." -c ".hex2rgb($color));
+      $output = shell_exec($command);
+      return "Desk Lamp color changed to #".$color.".";
+    }
+  }
+  
+  function setWhite($intensity) {
+    $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py ".$this->ip." -w ".$intensity." -1");
     $output = shell_exec($command);
     return "Desk Lamp color changed to #".$color.".";
   }

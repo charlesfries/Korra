@@ -27,26 +27,25 @@ function random_color() {
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     
+  
+    
     <link rel="apple-touch-icon" href="img/icon.png">
     <link rel="stylesheet" href="lib/theme/static/dark.css">
     <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    
+    <style>
+    body {
+      margin-top: 28px;
+    }
+    .spacer {
+      height: 20px;
+      background-color: #131416;
+    }
+    </style>
   </head>
   <body>
     <div id="container">
-      
-      <p><a href="/">&larr; Back to Home</a></p>
-      
-      <!-- Header -->
-      <h1>
-        <?php //echo $system->os->hostname; ?>
-        <a href="dashboard.php">Korra Dashboard</a>
-        <small id="uptime">Online for <?=$system->uptime->days?> days, <?=$system->uptime->hours?> hours, <?=$system->uptime->minutes?> minutes</small>
-        <?php 
-          if ($message) $message = '<small id="uptime">'.$message.'</small>';
-        ?>
-        <?=$message?>
-      </h1>
       
       <!-- Desk Lamp -->
       <div class="component">
@@ -182,6 +181,9 @@ function random_color() {
             </li>
           </ul>
         </div>
+      </div>
+      
+      <div class="component spacer">
       </div>
       
     </div>

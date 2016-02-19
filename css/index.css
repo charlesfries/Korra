@@ -15,6 +15,7 @@ body {
   font-family: "HelveticaNeue-UltraLight";
   color: #FFFFFF;
   font-size: 20px;
+  display: inline-block;
 }
 
 .nav > a {
@@ -23,6 +24,12 @@ body {
   color: #FFFFFF;
   text-decoration: none;
   font-size: 20px;
+}
+
+.loader {
+  float: right;
+  height: 100px;
+  width: 100px;
 }
 
 input {

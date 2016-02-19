@@ -30,7 +30,7 @@ function hex2rgb($hex) {
 class Light { 
   var $ip;
   
-  function setIP($value){
+  function setIP($value) {
     $this->ip = $value;
   }
   
@@ -58,16 +58,10 @@ class Light {
     }
   }
   
-  function setWhite($intensity) {
+  function setIntensity($intensity) { 
     $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py ".$this->ip." -w ".$intensity." -1");
     $output = shell_exec($command);
-    return "Desk Lamp color changed to #".$color.".";
-  }
-  
-  function setIntensity($intensity) { 
-    $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py ".$this->ip."  -w ".$intensity." -0");
-    $output = shell_exec($command);
-    return "Desk Lamp intensity changed to ".$intensity."%.";
+    return "Desk Lamp made white and intensity changed to ".$intensity."%.";
   }
   
   function turnAllOn() {

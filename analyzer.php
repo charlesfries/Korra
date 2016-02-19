@@ -13,7 +13,7 @@ if ($_GET["q"]) {
 		
 		// Colors
 		else if (array_key_exists(strtolower($words[1]), $colors)) {
-
+			
 			if (array_key_exists(strtolower($words[2]), $colors)) {
 				$deskLamp->setColor($colors[strtolower($words[1])]);
 				$tallLamp->setColor($colors[strtolower($words[2])]);
@@ -32,8 +32,8 @@ if ($_GET["q"]) {
 			} else {
 				$intensity = 100;
 			}
-			$deskLamp->setWhite($intensity);
-			$tallLamp->setWhite($intensity);
+			$deskLamp->setIntensity($intensity);
+			$tallLamp->setIntensity($intensity);
 			$response = "All lights made white.";
 		}
 		

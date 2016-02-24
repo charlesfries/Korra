@@ -34,6 +34,7 @@ require("controller.php");
 		<script src="lib/spin.js/spin.min.js"></script>
 		<script src="lib/annyang/annyang.min.js"></script>
 		<script src="lib/jquery/jquery.min.js"></script>
+		<script src="lib/typed.js/typed.js"></script>
 		<script src="js/index.js"></script>
 	</body>
 </html>

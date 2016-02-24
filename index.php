@@ -6,9 +6,11 @@ require("analyzer.php");
 <html lang="en">
 	<head>
 		<title>Korra</title>
+		
 		<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+		
 		<link rel="apple-touch-icon" href="img/icon.png">
 		<link rel="stylesheet" href="css/index.css">
 	</head>
@@ -33,7 +35,7 @@ require("analyzer.php");
 		
 		<script>
 			function about() {
-				alert("Korra Platform v1.0\nCreated by Charles Fries\n© 2016 Charles Fries")
+				alert("Korra Platform v1.0\nCreated by Charles Fries\n© 2016 Charles Fries");
 			}
 		
 			document.onkeypress = function() {
@@ -41,20 +43,42 @@ require("analyzer.php");
 			}
 			
 			function go() {
-				if (event.keyCode == 13) {
-					
-					acknowledged();
-					setTimeout(proc,100);
-				}
+				if (event.keyCode == 13) analyze(document.getElementById("query").value);
+			}
+		</script>
+
+		<script src="lib/three.js/three.min.js"></script>
+		<script src="lib/three.js/Projector.js"></script>
+		<script src="lib/three.js/CanvasRenderer.js"></script>
+		<script src="lib/three.js/example.js"></script>
+		<script src="lib/spin.js/spin.min.js"></script>
+		<script src="lib/annyang/annyang.min.js"></script>
+		<script src="lib/jquery/jquery.min.js"></script>
+		
+		<script>
+			if (annyang) {
+				var commands = {
+					"lights on": function() {
+						analyze("lights on");
+					},
+					"lights off": function() {
+						analyze("lights off");
+					}
+				};
+				annyang.addCommands(commands);
+				annyang.start();
+				/*var commands = {
+					"korra *tag": showFlickr
+				};
+				var showFlickr = function(tag) {
+					analyze(tag);
+				}*/
 			}
 			
-			function proc() {
-				window.location = "?q=" + document.getElementById("query").value;
-			}
-			
-			function acknowledged() {
-				var audio = new Audio("audio/blip.mp3");
-				audio.play();
+			function analyze(query) {
+			  
+				// Interface
+				document.getElementById("query").value = query;
 				
 				var opts = {
 					lines: 13,
@@ -79,44 +103,22 @@ require("analyzer.php");
 					position: "relative"
 				};
 				var spinner = new Spinner(opts).spin(document.getElementById("loader"));
-			}
-		</script>
-
-		<script src="lib/three.js/three.min.js"></script>
-		<script src="lib/three.js/Projector.js"></script>
-		<script src="lib/three.js/CanvasRenderer.js"></script>
-		<script src="lib/three.js/example.js"></script>
-		<script src="lib/spin.js/spin.min.js"></script>
-		<script src="lib/annyang/annyang.min.js"></script>
-		<script src="lib/jquery/jquery.min.js"></script>
-		<script>
-			if (annyang) {
-				/*var commands = {
-					"korra *tag": showFlickr
-				};
-				var showFlickr = function(tag) {
-					document.getElementById("query").value = tag;
-					window.location = "?q=" + tag;
-				}*/
-				var commands = {
-					"lights on": function() {
-						acknowledged();
-						document.getElementById("query").value = "lights on";
-						setTimeout(function() {
-							window.location = "?q=lights%20on";
-						},100);
-						
-					},
-					"lights off": function() {
-						acknowledged();
-						document.getElementById("query").value = "lights off";
-						setTimeout(function() {
-							window.location = "?q=lights%20off";
-						},100);
-					}
-				};
-				annyang.addCommands(commands);
-				annyang.start();
+				
+				var audio = new Audio("audio/blip.mp3");
+				audio.play();
+				
+				// Processing
+			  var words = query.split(" ");
+				
+				if (words[0].toLowerCase() == "lights") {
+					if (words[1].toLowerCase() == "on") {
+			      window.location = "?s=allOn";
+			    } else if (words[1].toLowerCase() == "off") {
+			      window.location = "?s=allOff";
+			    }
+				} else {
+					document.getElementById("resp").innerHTML = "Sorry, I am incapable of answering that question.";
+				}
 			}
 		</script>
 		

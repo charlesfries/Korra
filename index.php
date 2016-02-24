@@ -19,19 +19,17 @@ require("analyzer.php");
 				Korra Platform v1.0<br>
 				<a href="/">Home</a><br>
 	      <a href="dashboard.php">Dashboard</a><br>
-				<a href="javascript:about()">About</a>
+				<a href="javascript:about()">About</a><br>
 	    </div>
 			<div class="loader" id="loader"></div>
 	    <center>
-				<input type="text" id="query" placeholder="Hello, I am Korra! Ask me anything!" style="width:100%" name="q" value="<?php echo $_GET['q']; ?>" onkeydown="go()">
+				<input type="text" id="query" placeholder="Hello, I am Korra! Ask me anything!" style="width:100%" name="q" value="<?=$_GET['q']?>" onkeydown="go()">
 	      <br>
-	      <span class="response"><?=$response?></span>
+	      <span class="response" id="resp"><?=$response?></span>
 	    </center>
 		</div>
 		
-		<div id="footer">
-  		&copy; 2016 Charles Fries
-		</div>
+		<div id="footer">&copy; 2016 Charles Fries</div>
 		
 		<script>
 			function about() {
@@ -41,41 +39,46 @@ require("analyzer.php");
 			document.onkeypress = function() {
 				document.getElementById("query").focus();
 			}
-		
-			var opts = {
-				lines: 13,
-				length: 28,
-				width: 14,
-				radius: 42,
-				scale: 0.3,
-				corners: 1,
-				color: "#fff",
-				opacity: 0.25,
-				rotate: 0,
-				direction: 1,
-				speed: 1,
-				trail: 60,
-				fps: 20,
-				zIndex: 2e9,
-				className: "spinner",
-				top: "50%",
-				left: "50%",
-				shadow: false,
-				hwaccel: false,
-				position: "relative"
-			};
 			
-			var target = document.getElementById("loader");
+			function go() {
+				if (event.keyCode == 13) {
+					
+					acknowledged();
+					setTimeout(proc,100);
+				}
+			}
 			
 			function proc() {
 				window.location = "?q=" + document.getElementById("query").value;
 			}
-
-			function go() {
-				if (event.keyCode == 13) {
-					var spinner = new Spinner(opts).spin(target);
-					setTimeout(proc,100);
-				}
+			
+			function acknowledged() {
+				var audio = new Audio("audio/blip.mp3");
+				audio.play();
+				
+				var opts = {
+					lines: 13,
+					length: 28,
+					width: 14,
+					radius: 42,
+					scale: 0.3,
+					corners: 1,
+					color: "#fff",
+					opacity: 0.25,
+					rotate: 0,
+					direction: 1,
+					speed: 1,
+					trail: 60,
+					fps: 20,
+					zIndex: 2e9,
+					className: "spinner",
+					top: "50%",
+					left: "50%",
+					shadow: false,
+					hwaccel: false,
+					position: "relative"
+				};
+				var spinner = new Spinner(opts).spin(document.getElementById("loader"));
 			}
 		</script>
 
@@ -84,22 +87,37 @@ require("analyzer.php");
 		<script src="lib/three.js/CanvasRenderer.js"></script>
 		<script src="lib/three.js/example.js"></script>
 		<script src="lib/spin.js/spin.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/annyang/2.2.1/annyang.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="lib/annyang/annyang.min.js"></script>
+		<script src="lib/jquery/jquery.min.js"></script>
 		<script>
-		if (annyang) {
-		  var commands = {
-		    "lights on": function() {
-		      window.location = "?s=allOn";
-		    },
-				"lights off": function() {
-		      window.location = "?s=allOff";
-		    }
-		  };
-			
-		  annyang.addCommands(commands);
-		  annyang.start();
-		}
+			if (annyang) {
+				/*var commands = {
+					"korra *tag": showFlickr
+				};
+				var showFlickr = function(tag) {
+					document.getElementById("query").value = tag;
+					window.location = "?q=" + tag;
+				}*/
+				var commands = {
+					"lights on": function() {
+						acknowledged();
+						document.getElementById("query").value = "lights on";
+						setTimeout(function() {
+							window.location = "?q=lights%20on";
+						},100);
+						
+					},
+					"lights off": function() {
+						acknowledged();
+						document.getElementById("query").value = "lights off";
+						setTimeout(function() {
+							window.location = "?q=lights%20off";
+						},100);
+					}
+				};
+				annyang.addCommands(commands);
+				annyang.start();
+			}
 		</script>
 		
 	</body>

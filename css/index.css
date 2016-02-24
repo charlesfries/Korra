@@ -39,6 +39,7 @@ input {
   font-size: 50px;
   font-family: "HelveticaNeue-UltraLight";
   text-align: center;
+  width: 100%;
 }
 
 input:focus {

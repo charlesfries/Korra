@@ -1,3 +1,4 @@
+
 function about() {
   alert("Korra Platform v1.0\nCreated by Charles Fries\n© 2016 Charles Fries");
 }
@@ -11,22 +12,23 @@ function go() {
 }
 
 if (annyang) {
-  var commands = {
+  /*var commands = {
     "lights on": function() {
       analyze("lights on");
     },
     "lights off": function() {
       analyze("lights off");
     }
+  };*/
+  
+  var commands = {
+    "korra *tag": function(tag) {
+      alert("Works");
+    }
   };
+  
   annyang.addCommands(commands);
   annyang.start();
-  /*var commands = {
-    "korra *tag": showFlickr
-  };
-  var showFlickr = function(tag) {
-    analyze(tag);
-  }*/
 }
 
 function analyze(query) {

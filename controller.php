@@ -125,12 +125,18 @@ else if ($_GET["s"] == "doorLock") {
   $str = "abc";
   stream_socket_sendto($socket, $str, strlen($str), 0, $peer);
    
+<<<<<<< HEAD
 }
 
 // Query
 else if ($_GET["s"] == "query") {
   $command = escapeshellcmd("/var/www/html/lib/flux_led/flux_led.py -sS --off");
   $output = shell_exec($command);
+=======
+ 
+ 
+ 
+>>>>>>> 4e540e9d09474db77acfdfcbd27ae506a68c31d9
 }
   
 else if ($_GET["s"] == "doorUnlock")

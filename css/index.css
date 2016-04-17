@@ -1,0 +1,72 @@
+body {
+  background-color: #000000;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.top {
+  position: fixed;
+  width: 100%;
+}
+
+.nav {
+  padding-left: 10px;
+  padding-top: 10px;
+  font-family: "HelveticaNeue-UltraLight";
+  color: #FFFFFF;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.nav > a {
+  margin-left: 10px;
+  font-family: "HelveticaNeue-UltraLight";
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.loader {
+  float: right;
+  height: 100px;
+  width: 100px;
+}
+
+input {
+  color: #FFFFFF;
+  background-color: #000000;
+  border: 0px solid #1D2023;
+  font-size: 50px;
+  font-family: "HelveticaNeue-UltraLight";
+  text-align: center;
+  width: 100%;
+}
+
+input:focus {
+  outline-width: 0;
+}
+
+.response {
+  color: #FFFFFF;
+  font-size: 50px;
+  font-family: "HelveticaNeue-UltraLight";
+  background-color: #000000;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-right: -30px;
+  
+  font-family: "HelveticaNeue-UltraLight";
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+::-webkit-input-placeholder {
+  color: #FFFFFF;
+}
